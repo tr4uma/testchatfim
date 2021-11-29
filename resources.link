@@ -1,0 +1,13 @@
+Chat REST API Developer Guide => https://developer.salesforce.com/docs/atlas.en-us.live_agent_rest.meta/live_agent_rest/live_agent_rest_understanding_resources.htm
+iOS - Using Chat with the Service SDK => https://developer.salesforce.com/docs/atlas.en-us.service_sdk_ios.meta/service_sdk_ios/servicesdk_using_live_agent.htm
+Android - Using Chat with the Service SDK => https://developer.salesforce.com/docs/atlas.en-us.service_sdk_android.meta/service_sdk_android/servicesdk_using_live_agent.htm
+
+Customize the General Branding for Your Chat Window => https://help.salesforce.com/articleView?id=snapins_chat_branding.htm&type=5
+Customize Additional Chat Branding => https://help.salesforce.com/articleView?id=snapins_customize_additional_branding.htm&type=5
+
+
+Personalizzare il pulsante => https://developer.salesforce.com/docs/atlas.en-us.snapins_web_dev.meta/snapins_web_dev/embedded_services_web_bootstrap_chat.htm
+
+Personalizzare workitem in omnichannel => https://help.salesforce.com/s/articleView?id=sf.service_presence_edit_work_item_details_with_compact_layouts.htm&type=5
+
+Allow agents to reject => https://help.salesforce.com/s/articleView?id=sf.service_presence_configuration_settings.htm&type=5
