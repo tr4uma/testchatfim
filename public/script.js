@@ -26,8 +26,8 @@ function init(){
 
 function setIdPressed(checkbox){
   sessionId = checkbox.checked;
-  location.href = location.href + "&sessionId=" + sessionId;
-  location.reload();
+  var url = location.href + "&sessionId=" + sessionId;
+  window.location.href = url
 }
 
 function initESW(gslbBaseURL) {
