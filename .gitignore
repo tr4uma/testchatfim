@@ -36,5 +36,3 @@ $RECYCLE.BIN/
 
 # Local environment variables
 .env
-
-node_modules

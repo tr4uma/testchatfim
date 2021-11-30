@@ -11,7 +11,8 @@
             outline: 1px solid #005290;
         }
     </style>
-    USER CHAT
+    USER CHAT<br>
+    <input name="Id" type="text" maxlength="512" id="textbox_id"/>
     <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
     <script type='text/javascript'>
         var initESW = function(gslbBaseURL) {
@@ -28,9 +29,9 @@
             //        Email: userData.email
             //    };
             //}
-            
-            let userSessionId = '1'
+            let userSessionId = document.getElementById('textbox_id').value
             if (userSessionId !== null && typeof userSessionId !== 'undefined') {
+                console.log('extraPrechatInfo')
                 // Disable contact creation
                 embedded_svc.settings.extraPrechatInfo = [{
                     "entityFieldMaps": [{
