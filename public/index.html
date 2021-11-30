@@ -12,10 +12,13 @@
         }
     </style>
     USER CHAT<br>
-    <input name="Id" type="text" maxlength="512" id="textbox_id"/>
+    <input type="checkbox" id="sessionId" name="sessionId" value="" onclick="setIdPressed(this)">
+    <label for="sessionId"> Set session ID</label><br>
     <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
     <script type='text/javascript'>
-        var initESW = function(gslbBaseURL) {
+        var sessionId = false
+
+        function initESW(gslbBaseURL) {
             embedded_svc.settings.displayHelpButton = true;
             embedded_svc.settings.language = 'it-IT'; //For example, enter 'en' or 'en-US'
             embedded_svc.settings.enabledFeatures = ['LiveAgent'];
@@ -29,7 +32,14 @@
             //        Email: userData.email
             //    };
             //}
-            let userSessionId = document.getElementById('textbox_id').value
+
+            var userSessionId = null
+            var url_string = window.location.href
+            var url = new URL(url_string);
+            var sessionId = url.searchParams.get("sessionId");
+            if(sessionId){
+                userSessionId = '1'
+            }
             if (userSessionId !== null && typeof userSessionId !== 'undefined') {
                 console.log('extraPrechatInfo')
                 // Disable contact creation
@@ -44,8 +54,6 @@
                     "entityName":"Account"
                 }];
             }
-
-
 
             //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
             //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
@@ -80,6 +88,12 @@
                 }
             );
         };
+
+        function setIdPressed(checkbox){
+            sessionId = checkbox.checked;
+            location.href = location.href + "&sessionId=" + sessionId;
+            location.reload();
+        }
     
         if (!window.embedded_svc) {
             var s = document.createElement('script');
@@ -92,6 +106,9 @@
         } else {
             initESW('https://service.force.com');
         }
+
+
+
     </script>
 </body>
 </html>
