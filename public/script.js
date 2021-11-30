@@ -1,21 +1,19 @@
 var sessionId = false;
-var userSessionId = null;
-let userData = {
-  firstName: "John",
-  lastName: "Doe",
-  email: "john.doe@salesforce.com",
-};
+var userData = null
 
 function init() {
   var url_string = window.location.href;
   var url = new URL(url_string);
   var sessionId = url.searchParams.get("sessionId");
   if (sessionId == "true") {
-    userSessionId = "1";
+    userData = {
+      firstName: "John",
+      lastName: "Doe",
+      email: "john.doe@salesforce.com",
+    };
   } else {
-    userSessionId = null;
+    userData = null;
   }
-  //console.log(userSessionId)
   document.getElementById("sessionId").checked = sessionId == "true";
 
   if (!window.embedded_svc) {
@@ -60,7 +58,7 @@ function initESW(gslbBaseURL) {
   //    };
   //}
 
-  if (userSessionId !== null && typeof userSessionId !== "undefined") {
+  if (userData !== null && typeof userData !== "undefined") {
     // User Logged In
     console.log("User Logged In");
 
