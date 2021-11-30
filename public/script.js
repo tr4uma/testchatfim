@@ -1,4 +1,34 @@
 var sessionId = false
+var userSessionId = null
+
+function init(){
+  var url_string = window.location.href
+  var url = new URL(url_string);
+  var sessionId = url.searchParams.get("sessionId");
+  if(sessionId){
+      userSessionId = '1'
+  }
+  console.log(userSessionId)
+  document.getElementById("sessionId").checked = sessionId;
+
+  if (!window.embedded_svc) {
+    var s = document.createElement('script');
+    s.setAttribute('src',
+        'https://fulmineinmano--devshared.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+    s.onload = function() {
+        initESW(null);
+    };
+    document.body.appendChild(s);
+  } else {
+    initESW('https://service.force.com');
+  }
+}
+
+function setIdPressed(checkbox){
+  sessionId = checkbox.checked;
+  location.href = location.href + "&sessionId=" + sessionId;
+  location.reload();
+}
 
 function initESW(gslbBaseURL) {
     embedded_svc.settings.displayHelpButton = true;
@@ -15,13 +45,6 @@ function initESW(gslbBaseURL) {
     //    };
     //}
 
-    var userSessionId = null
-    var url_string = window.location.href
-    var url = new URL(url_string);
-    var sessionId = url.searchParams.get("sessionId");
-    if(sessionId){
-        userSessionId = '1'
-    }
     if (userSessionId !== null && typeof userSessionId !== 'undefined') {
         console.log('extraPrechatInfo')
         // Disable contact creation
@@ -70,25 +93,3 @@ function initESW(gslbBaseURL) {
         }
     );
 };
-
-function setIdPressed(checkbox){
-    sessionId = checkbox.checked;
-    location.href = location.href + "&sessionId=" + sessionId;
-    location.reload();
-}
-
-if (!window.embedded_svc) {
-    var s = document.createElement('script');
-    s.setAttribute('src',
-        'https://fulmineinmano--devshared.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-    s.onload = function() {
-        initESW(null);
-    };
-    document.body.appendChild(s);
-} else {
-    initESW('https://service.force.com');
-}
-
-function init(){
-
-}
