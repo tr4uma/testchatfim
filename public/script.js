@@ -5,11 +5,13 @@ function init(){
   var url_string = window.location.href
   var url = new URL(url_string);
   var sessionId = url.searchParams.get("sessionId");
-  if(sessionId){
-      userSessionId = '1'
+  if(sessionId == 'true'){
+    userSessionId = '1'
+  } else {
+    userSessionId = null
   }
   console.log(userSessionId)
-  document.getElementById("sessionId").checked = sessionId;
+  document.getElementById("sessionId").checked = sessionId == 'true';
 
   if (!window.embedded_svc) {
     var s = document.createElement('script');
@@ -26,10 +28,10 @@ function init(){
 
 function setIdPressed(checkbox){
   sessionId = checkbox.checked;
-  var url = window.location.href;
+  var url = window.location.href.split('?')[0];
   if (url.indexOf('?') > -1){
     url += '&'
-  }else{
+  } else {
     url += '?'
   }
   url += 'sessionId=' + sessionId
