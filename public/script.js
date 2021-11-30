@@ -66,35 +66,10 @@ function initESW(gslbBaseURL) {
 
     // Prepopulate fields
     embedded_svc.settings.prepopulatedPrechatFields = {
-      FirstName: firstName,
-      LastName: lastName,
-      Email: email,
+      FirstName: userData.firstName,
+      LastName: userData.lastName,
+      Email: userData.email,
     };
-
-    // Details
-    embedded_svc.settings.extraPrechatFormDetails = [
-      {
-        label: "First Name",
-        name: "FirstName",
-        value: userData.firstName,
-        displayToAgent: true,
-      },
-      {
-        label: "Last Name",
-        value: userData.lastName,
-        displayToAgent: true,
-      },
-      {
-        label: "Email",
-        value: userData.email,
-        displayToAgent: true,
-      },
-      {
-        label: "issue",
-        value: "Sales forecasts",
-        displayToAgent: true,
-      },
-    ];
 
     // Disable creation of a contact and a case
     embedded_svc.snippetSettingsFile.extraPrechatInfo = [
