@@ -95,6 +95,12 @@ function initESW(gslbBaseURL) {
           }]
         }
       ];
+      embedded_svc.settings.prepopulatedPrechatFields = {
+        FirstName: 'John',
+        LastName: 'Doe',
+        Email: 'john.doe@salesforce.com'
+      };
+
     } else { 
       // User Logged In
       console.log('Guest User')
