@@ -64,6 +64,14 @@ function initESW(gslbBaseURL) {
     // User Logged In
     console.log("User Logged In");
 
+    // Prepopulate fields
+    embedded_svc.settings.prepopulatedPrechatFields = {
+      FirstName: firstName,
+      LastName: lastName,
+      Email: email,
+    };
+
+    // Details
     embedded_svc.settings.extraPrechatFormDetails = [
       {
         label: "First Name",
@@ -129,12 +137,7 @@ function initESW(gslbBaseURL) {
         ],
       },
     ];
-    // Prepopulate fields
-    // embedded_svc.settings.prepopulatedPrechatFields = {
-    //   FirstName: firstName,
-    //   LastName: lastName,
-    //   Email: email,
-    // };
+
   } else {
     // User Logged In
     console.log("Guest User");
