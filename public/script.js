@@ -60,8 +60,21 @@ function initESW(gslbBaseURL) {
     if (userSessionId !== null && typeof userSessionId !== 'undefined') {
       // User Logged In
       console.log('User Logged In')
-      // disable creation of a contact and a case:
-      // this will be handled by the chat transcript trigger that will create a case that will create a contact
+      // Override setup details
+      embedded_svc.settings.extraPrechatFormDetails = [
+        {
+          "label":"Case Reason",
+          "value":"Sales forecasts",
+          "transcriptFields":[],
+          "displayToAgent":true
+        },
+        {
+          "label":"Subject",
+          "value":"",
+          "transcriptFields":[],
+          "displayToAgent":true
+        }] ; 
+      // Disable creation of a contact and a case
       embedded_svc.snippetSettingsFile.extraPrechatInfo = [
         {
           "entityName":"Contact",
@@ -98,6 +111,7 @@ function initESW(gslbBaseURL) {
           }]
         }
       ];
+      // Prepopulate fields
       embedded_svc.settings.prepopulatedPrechatFields = {
         FirstName: firstName,
         LastName: lastName,
