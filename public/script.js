@@ -1,5 +1,8 @@
 var sessionId = false
 var userSessionId = null
+var firstName = 'John'
+var lastName = 'Doe'
+var email = 'john.doe@salesforce.com'
 
 function init(){
   var url_string = window.location.href
@@ -96,9 +99,9 @@ function initESW(gslbBaseURL) {
         }
       ];
       embedded_svc.settings.prepopulatedPrechatFields = {
-        FirstName: 'John',
-        LastName: 'Doe',
-        Email: 'john.doe@salesforce.com'
+        FirstName: firstName,
+        LastName: lastName,
+        Email: email
       };
 
     } else { 
