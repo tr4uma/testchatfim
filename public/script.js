@@ -26,7 +26,13 @@ function init(){
 
 function setIdPressed(checkbox){
   sessionId = checkbox.checked;
-  var url = location.href + "&sessionId=" + sessionId;
+  var url = window.location.href;
+  if (url.indexOf('?') > -1){
+    url += '&'
+  }else{
+    url += '?'
+  }
+  url += 'sessionId=' + sessionId
   window.location.href = url
 }
 
