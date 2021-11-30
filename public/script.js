@@ -10,7 +10,7 @@ function init(){
   } else {
     userSessionId = null
   }
-  console.log(userSessionId)
+  //console.log(userSessionId)
   document.getElementById("sessionId").checked = sessionId == 'true';
 
   if (!window.embedded_svc) {
@@ -53,27 +53,59 @@ function initESW(gslbBaseURL) {
     //    };
     //}
 
+    
     if (userSessionId !== null && typeof userSessionId !== 'undefined') {
-        console.log('extraPrechatInfo')
-        // Disable contact creation
-        embedded_svc.settings.extraPrechatInfo = [{
-            "entityFieldMaps": [{
-            "doCreate":false,
-            "doFind":true,
-            "fieldName":"SessionId__c",
-            "isExactMatch":true,
-            "label":"SessionId__c"
-            }],
-            "entityName":"Account"
-        }];
+      // User Logged In
+      console.log('User Logged In')
+      // disable creation of a contact and a case:
+      // this will be handled by the chat transcript trigger that will create a case that will create a contact
+      embedded_svc.snippetSettingsFile.extraPrechatInfo = [
+        {
+          "entityName":"Contact",
+          "entityFieldMaps": [{
+              "doCreate":false,
+              "doFind":true,
+              "fieldName":"LastName",
+              "isExactMatch":false,
+              "label":"Last Name"
+            }, 
+            {
+              "doCreate":false,
+              "doFind":true,
+              "fieldName":"FirstName",
+              "isExactMatch":false,
+              "label":"First Name"
+            }, 
+            {
+              "doCreate":false,
+              "doFind":true,
+              "fieldName":"Email",
+              "isExactMatch":false,
+              "label":"Email"
+            }]
+        },
+        {
+          "entityName":"Case",
+          "entityFieldMaps": [{
+              "doCreate":false,
+              "doFind":false,
+              "fieldName":"Subject",
+              "isExactMatch":false,
+              "label":"Subject"
+          }]
+        }
+      ];
+    } else { 
+      // User Logged In
+      console.log('Guest User')
     }
 
     //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
     //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
-    
+
     //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
     //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
-    
+
     // Settings for Chat
     //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
         // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
@@ -83,21 +115,20 @@ function initESW(gslbBaseURL) {
     //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
     //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
 
-
-
     embedded_svc.init(
-        'https://fulmineinmano--devshared.my.salesforce.com',
-        'https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow',
-        gslbBaseURL,
-        '00D1X0000000Npj',
-        'Website_Prospect_FIM',
-        {
-            baseLiveAgentContentURL: 'https://c.la1-c1cs-fra.salesforceliveagent.com/content',
-            deploymentId: '5721X0000004ECE',
-            buttonId: '5731X0000004DHg',
-            baseLiveAgentURL: 'https://d.la1-c1cs-fra.salesforceliveagent.com/chat',
-            eswLiveAgentDevName: 'Website_Prospect_FIM',
-            isOfflineSupportEnabled: true
-        }
+      'https://fulmineinmano--devshared.my.salesforce.com',
+      'https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow',
+      gslbBaseURL,
+      '00D1X0000000Npj',
+      'Website_Prospect_FIM',
+      {
+          baseLiveAgentContentURL: 'https://c.la1-c1cs-fra.salesforceliveagent.com/content',
+          deploymentId: '5721X0000004ECE',
+          buttonId: '5731X0000004DHg',
+          baseLiveAgentURL: 'https://d.la1-c1cs-fra.salesforceliveagent.com/chat',
+          eswLiveAgentDevName: 'Website_Prospect_FIM',
+          isOfflineSupportEnabled: true
+      }
     );
+
 };
