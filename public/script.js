@@ -1,8 +1,10 @@
 var sessionId = false;
 var userSessionId = null;
-var firstName = "John";
-var lastName = "Doe";
-var email = "john.doe@salesforce.com";
+let userData = {
+  firstName: "John",
+  lastName: "Doe",
+  email: "john.doe@salesforce.com",
+};
 
 function init() {
   var url_string = window.location.href;
@@ -61,14 +63,31 @@ function initESW(gslbBaseURL) {
   if (userSessionId !== null && typeof userSessionId !== "undefined") {
     // User Logged In
     console.log("User Logged In");
-    // Override setup details
+
     embedded_svc.settings.extraPrechatFormDetails = [
       {
-        "label": "issue",
-        "value": "Overriding your setup",
-        "displayToAgent": true
-      }
+        label: "First Name",
+        name: "FirstName",
+        value: userData.firstName,
+        displayToAgent: true,
+      },
+      {
+        label: "Last Name",
+        value: userData.lastName,
+        displayToAgent: true,
+      },
+      {
+        label: "Email",
+        value: userData.email,
+        displayToAgent: true,
+      },
+      {
+        label: "issue",
+        value: "Sales forecasts",
+        displayToAgent: true,
+      },
     ];
+
     // Disable creation of a contact and a case
     embedded_svc.snippetSettingsFile.extraPrechatInfo = [
       {
@@ -111,11 +130,11 @@ function initESW(gslbBaseURL) {
       },
     ];
     // Prepopulate fields
-    embedded_svc.settings.prepopulatedPrechatFields = {
-      FirstName: firstName,
-      LastName: lastName,
-      Email: email,
-    };
+    // embedded_svc.settings.prepopulatedPrechatFields = {
+    //   FirstName: firstName,
+    //   LastName: lastName,
+    //   Email: email,
+    // };
   } else {
     // User Logged In
     console.log("Guest User");
