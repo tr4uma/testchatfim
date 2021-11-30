@@ -1,11 +1,12 @@
 var sessionId = false;
-var userData = null
+var userData = null;
 
 function init() {
   var url_string = window.location.href;
   var url = new URL(url_string);
   var sessionId = url.searchParams.get("sessionId");
   if (sessionId == "true") {
+    //let userData = $.fim.private.accountDetails;
     userData = {
       firstName: "John",
       lastName: "Doe",
@@ -49,26 +50,15 @@ function initESW(gslbBaseURL) {
   embedded_svc.settings.enabledFeatures = ["LiveAgent"];
   embedded_svc.settings.entryFeature = "LiveAgent";
 
-  //let userData = $.fim.private.accountDetails;
-  //if (userData !== null && typeof userData !== 'undefined') {
-  //    embedded_svc.settings.prepopulatedPrechatFields = {
-  //        FirstName: userData.firstName,
-  //        LastName: userData.lastName,
-  //        Email: userData.email
-  //    };
-  //}
-
   if (userData !== null && typeof userData !== "undefined") {
     // User Logged In
     console.log("User Logged In");
-
     // Prepopulate fields
     embedded_svc.settings.prepopulatedPrechatFields = {
       FirstName: userData.firstName,
       LastName: userData.lastName,
       Email: userData.email,
     };
-
     // Disable creation of a contact and a case
     embedded_svc.snippetSettingsFile.extraPrechatInfo = [
       {
@@ -78,21 +68,21 @@ function initESW(gslbBaseURL) {
             doCreate: false,
             doFind: true,
             fieldName: "LastName",
-            isExactMatch: false,
+            isExactMatch: true,
             label: "Last Name",
           },
           {
             doCreate: false,
             doFind: true,
             fieldName: "FirstName",
-            isExactMatch: false,
+            isExactMatch: true,
             label: "First Name",
           },
           {
             doCreate: false,
             doFind: true,
             fieldName: "Email",
-            isExactMatch: false,
+            isExactMatch: true,
             label: "Email",
           },
         ],
@@ -110,7 +100,6 @@ function initESW(gslbBaseURL) {
         ],
       },
     ];
-
   } else {
     // User Logged In
     console.log("Guest User");
