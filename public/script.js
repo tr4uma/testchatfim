@@ -64,17 +64,10 @@ function initESW(gslbBaseURL) {
     // Override setup details
     embedded_svc.settings.extraPrechatFormDetails = [
       {
-        label: "Case Reason",
-        value: "Sales forecasts",
-        transcriptFields: [],
-        displayToAgent: true,
-      },
-      {
-        label: "Subject",
-        value: "",
-        transcriptFields: [],
-        displayToAgent: true,
-      },
+        "label": "issue",
+        "value": "Overriding your setup",
+        "displayToAgent": true
+      }
     ];
     // Disable creation of a contact and a case
     embedded_svc.snippetSettingsFile.extraPrechatInfo = [
