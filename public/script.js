@@ -56,64 +56,39 @@ function initESW(gslbBaseURL) {
     // Prepopulate details
     embedded_svc.settings.extraPrechatFormDetails = [
       {
-        label: "First Name",
         name: "FirstName",
+        label: "First Name",
         value: userData.firstName,
         displayToAgent: true,
       },
       {
-        label: "Last Name",
         name: "LastName",
+        label: "Last Name",
         value: userData.lastName,
         displayToAgent: true,
       },
       {
-        label: "Email",
         name: "Email",
+        label: "Email",
         value: userData.email,
         displayToAgent: true,
       },
     ];
-    // Disable creation of a contact and a case
-    embedded_svc.snippetSettingsFile.extraPrechatInfo = [
+    // Link contact
+    embedded_svc.settings.extraPrechatInfo = [
       {
         entityName: "Contact",
         entityFieldMaps: [
           {
-            doCreate: false,
-            doFind: true,
-            fieldName: "LastName",
-            isExactMatch: true,
-            label: "Last Name",
-          },
-          {
-            doCreate: false,
-            doFind: true,
-            fieldName: "FirstName",
-            isExactMatch: true,
-            label: "First Name",
-          },
-          {
-            doCreate: false,
-            doFind: true,
             fieldName: "Email",
-            isExactMatch: true,
             label: "Email",
+            doCreate: false,
+            doFind: true,
+            isExactMatch: true,
           },
         ],
+        saveToTranscript: "ContactId",
       },
-      // {
-      //   entityName: "Case",
-      //   entityFieldMaps: [
-      //     {
-      //       doCreate: false,
-      //       doFind: true,
-      //       fieldName: "Subject",
-      //       isExactMatch: false,
-      //       label: "Subject",
-      //     },
-      //   ],
-      // },
     ];
     // Website_FIM_LoggedIn_User
     embedded_svc.init(
