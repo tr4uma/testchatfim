@@ -62,11 +62,11 @@ function initESW(gslbBaseURL) {
     //   },
     // ];
     // Prepopulate fields
-    // embedded_svc.settings.prepopulatedPrechatFields = {
-    //   FirstName: userData.firstName,
-    //   LastName: userData.lastName,
-    //   Email: userData.email,
-    // };
+    embedded_svc.settings.prepopulatedPrechatFields = {
+      FirstName: userData.firstName,
+      LastName: userData.lastName,
+      Email: userData.email,
+    };
     // Disable creation of a contact and a case
     // embedded_svc.snippetSettingsFile.extraPrechatInfo = [
     //   {
