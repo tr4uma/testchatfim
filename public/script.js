@@ -53,18 +53,28 @@ function initESW(gslbBaseURL) {
   if (userData !== null && typeof userData !== "undefined") {
     // User Logged In
     console.log("User Logged In");
-    // Prepopulate fields
-    embedded_svc.settings.extraPrechatFormDetails = [{
-      "label": "First Name",
-      "name": "FirstName",
-      "value": userData.firstName,
-      "displayToAgent":true
-    }];
-    // embedded_svc.settings.prepopulatedPrechatFields = {
-    //   FirstName: userData.firstName,
-    //   LastName: userData.lastName,
-    //   Email: userData.email,
-    // };
+    // Prepopulate details
+    embedded_svc.settings.extraPrechatFormDetails = [
+      {
+        "label": "First Name",
+        "name": "FirstName",
+        "value": userData.firstName,
+        "displayToAgent":true
+      },
+      {
+        "label": "Last Name",
+        "name": "LastName",
+        "value": userData.lastName,
+        "displayToAgent":true
+      },
+      {
+        "label": "Email",
+        "name": "Email",
+        "value": userData.email,
+        "displayToAgent":true
+      },
+    ];
+
     // Disable creation of a contact and a case
     // embedded_svc.snippetSettingsFile.extraPrechatInfo = [
     //   {
