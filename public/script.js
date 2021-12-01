@@ -62,11 +62,11 @@ function initESW(gslbBaseURL) {
     //   },
     // ];
     // Prepopulate fields
-    embedded_svc.settings.prepopulatedPrechatFields = {
-      FirstName: userData.firstName,
-      LastName: userData.lastName,
-      Email: userData.email,
-    };
+    // embedded_svc.settings.prepopulatedPrechatFields = {
+    //   FirstName: userData.firstName,
+    //   LastName: userData.lastName,
+    //   Email: userData.email,
+    // };
     // Disable creation of a contact and a case
     // embedded_svc.snippetSettingsFile.extraPrechatInfo = [
     //   {
@@ -143,25 +143,6 @@ function initESW(gslbBaseURL) {
       x.childNodes[i].style.visibility = "hidden";
       console.log(x.childNodes[i]);
     }
-  } else {
-    // Guest user
-    console.log("Guest User");
-    embedded_svc.init(
-      "https://fulmineinmano--devshared.my.salesforce.com",
-      "https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow",
-      gslbBaseURL,
-      "00D1X0000000Npj",
-      "Website_Prospect_FIM",
-      {
-        baseLiveAgentContentURL:
-          "https://c.la1-c1cs-fra.salesforceliveagent.com/content",
-        deploymentId: "5721X0000004ECE",
-        buttonId: "5731X0000004DHg",
-        baseLiveAgentURL: "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
-        eswLiveAgentDevName: "Website_Prospect_FIM",
-        isOfflineSupportEnabled: true,
-      }
-    );
   }
 
 }
