@@ -56,38 +56,40 @@ function initESW(gslbBaseURL) {
     // Prepopulate details
     embedded_svc.settings.extraPrechatFormDetails = [
       {
-        "label": "First Name",
-        "name": "FirstName",
-        "value": userData.firstName,
-        "displayToAgent":true
+        label: "First Name",
+        name: "FirstName",
+        value: userData.firstName,
+        displayToAgent: true,
       },
       {
-        "label": "Last Name",
-        "name": "LastName",
-        "value": userData.lastName,
-        "displayToAgent":true
+        label: "Last Name",
+        name: "LastName",
+        value: userData.lastName,
+        displayToAgent: true,
       },
       {
-        "label": "Email",
-        "name": "Email",
-        "value": userData.email,
-        "displayToAgent":true
+        label: "Email",
+        name: "Email",
+        value: userData.email,
+        displayToAgent: true,
       },
     ];
     // Website_FIM_LoggedIn_User
     embedded_svc.init(
-      'https://fulmineinmano--devshared.my.salesforce.com',
-      'https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow',
+      "https://fulmineinmano--devshared.my.salesforce.com",
+      "https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow",
       gslbBaseURL,
-      '00D1X0000000Npj',
-      'Website_FIM_LoggedIn_User',
+      "00D1X0000000Npj",
+      "Website_FIM_LoggedIn_User",
       {
-        baseLiveAgentContentURL: 'https://c.la1-c1cs-fra.salesforceliveagent.com/content',
-        deploymentId: '5721X0000004ECE',
-        buttonId: '5731X0000004DHg',
-        baseLiveAgentURL: 'https://d.la1-c1cs-fra.salesforceliveagent.com/chat',
-        eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I1X0000008PPgUAM_17d757bf263',
-        isOfflineSupportEnabled: false
+        baseLiveAgentContentURL:
+          "https://c.la1-c1cs-fra.salesforceliveagent.com/content",
+        deploymentId: "5721X0000004ECE",
+        buttonId: "5731X0000004DHg",
+        baseLiveAgentURL: "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
+        eswLiveAgentDevName:
+          "EmbeddedServiceLiveAgent_Parent04I1X0000008PPgUAM_17d757bf263",
+        isOfflineSupportEnabled: true,
       }
     );
   } else {
@@ -111,5 +113,4 @@ function initESW(gslbBaseURL) {
       }
     );
   }
-
 }
