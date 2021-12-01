@@ -54,13 +54,13 @@ function initESW(gslbBaseURL) {
     // User Logged In
     console.log("User Logged In");
     // Override setup
-    embedded_svc.settings.extraPrechatFormDetails = [
-      {
-        label: "issue",
-        value: "Overriding your setup",
-        displayToAgent: true,
-      },
-    ];
+    // embedded_svc.settings.extraPrechatFormDetails = [
+    //   {
+    //     label: "issue",
+    //     value: "Overriding your setup",
+    //     displayToAgent: true,
+    //   },
+    // ];
     // Prepopulate fields
     embedded_svc.settings.prepopulatedPrechatFields = {
       FirstName: userData.firstName,
@@ -68,46 +68,46 @@ function initESW(gslbBaseURL) {
       Email: userData.email,
     };
     // Disable creation of a contact and a case
-    embedded_svc.snippetSettingsFile.extraPrechatInfo = [
-      {
-        entityName: "Contact",
-        entityFieldMaps: [
-          {
-            doCreate: false,
-            doFind: true,
-            fieldName: "LastName",
-            isExactMatch: true,
-            label: "Last Name",
-          },
-          {
-            doCreate: false,
-            doFind: true,
-            fieldName: "FirstName",
-            isExactMatch: true,
-            label: "First Name",
-          },
-          {
-            doCreate: false,
-            doFind: true,
-            fieldName: "Email",
-            isExactMatch: true,
-            label: "Email",
-          },
-        ],
-      },
-      {
-        entityName: "Case",
-        entityFieldMaps: [
-          {
-            doCreate: false,
-            doFind: false,
-            fieldName: "Subject",
-            isExactMatch: false,
-            label: "Subject",
-          },
-        ],
-      },
-    ];
+    // embedded_svc.snippetSettingsFile.extraPrechatInfo = [
+    //   {
+    //     entityName: "Contact",
+    //     entityFieldMaps: [
+    //       {
+    //         doCreate: false,
+    //         doFind: true,
+    //         fieldName: "LastName",
+    //         isExactMatch: true,
+    //         label: "Last Name",
+    //       },
+    //       {
+    //         doCreate: false,
+    //         doFind: true,
+    //         fieldName: "FirstName",
+    //         isExactMatch: true,
+    //         label: "First Name",
+    //       },
+    //       {
+    //         doCreate: false,
+    //         doFind: true,
+    //         fieldName: "Email",
+    //         isExactMatch: true,
+    //         label: "Email",
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     entityName: "Case",
+    //     entityFieldMaps: [
+    //       {
+    //         doCreate: false,
+    //         doFind: false,
+    //         fieldName: "Subject",
+    //         isExactMatch: false,
+    //         label: "Subject",
+    //       },
+    //     ],
+    //   },
+    // ];
     //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
     //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
 
@@ -122,6 +122,31 @@ function initESW(gslbBaseURL) {
     //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
     //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
     embedded_svc.init(
+      'https://fulmineinmano--devshared.my.salesforce.com',
+      'https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow',
+      gslbBaseURL,
+      '00D1X0000000Npj',
+      'Website_FIM_LoggedIn_User',
+      {
+        baseLiveAgentContentURL: 'https://c.la1-c1cs-fra.salesforceliveagent.com/content',
+        deploymentId: '5721X0000004ECE',
+        buttonId: '5731X0000004DHg',
+        baseLiveAgentURL: 'https://d.la1-c1cs-fra.salesforceliveagent.com/chat',
+        eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I1X0000008PPgUAM_17d757bf263',
+        isOfflineSupportEnabled: false
+      }
+    );
+
+    var x = document.getElementsByClassName("fieldList");
+    console.log(x)
+    for (var i = 0; i < 3; i++) {
+      x.childNodes[i].style.visibility = "hidden";
+      console.log(x.childNodes[i]);
+    }
+  } else {
+    // Guest user
+    console.log("Guest User");
+    embedded_svc.init(
       "https://fulmineinmano--devshared.my.salesforce.com",
       "https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow",
       gslbBaseURL,
@@ -135,31 +160,6 @@ function initESW(gslbBaseURL) {
         baseLiveAgentURL: "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
         eswLiveAgentDevName: "Website_Prospect_FIM",
         isOfflineSupportEnabled: true,
-      }
-    );
-
-    var x = document.getElementsByClassName("fieldList");
-    console.log(x)
-    for (var i = 0; i < 3; i++) {
-      x.childNodes[i].style.visibility = "hidden";
-      console.log(x.childNodes[i]);
-    }
-  } else {
-    // User Logged In
-    console.log("Guest User");
-    embedded_svc.init(
-      'https://fulmineinmano--devshared.my.salesforce.com',
-      'https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow',
-      gslbBaseURL,
-      '00D1X0000000Npj',
-      'Website_FIM_LoggedIn_User',
-      {
-        baseLiveAgentContentURL: 'https://c.la1-c1cs-fra.salesforceliveagent.com/content',
-        deploymentId: '5721X0000004ECE',
-        buttonId: '5731X0000004DHg',
-        baseLiveAgentURL: 'https://d.la1-c1cs-fra.salesforceliveagent.com/chat',
-        eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I1X0000008PPgUAM_17d757bf263',
-        isOfflineSupportEnabled: false
       }
     );
   }
