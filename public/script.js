@@ -108,47 +108,60 @@ function initESW(gslbBaseURL) {
         ],
       },
     ];
+    //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+    //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+    //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+    //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+    // Settings for Chat
+    //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+    // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+    // Returns a valid button ID.
+    //};
+    //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+    //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+    embedded_svc.init(
+      "https://fulmineinmano--devshared.my.salesforce.com",
+      "https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow",
+      gslbBaseURL,
+      "00D1X0000000Npj",
+      "Website_Prospect_FIM",
+      {
+        baseLiveAgentContentURL:
+          "https://c.la1-c1cs-fra.salesforceliveagent.com/content",
+        deploymentId: "5721X0000004ECE",
+        buttonId: "5731X0000004DHg",
+        baseLiveAgentURL: "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
+        eswLiveAgentDevName: "Website_Prospect_FIM",
+        isOfflineSupportEnabled: true,
+      }
+    );
+
+    var x = document.getElementsByClassName("fieldList");
+    console.log(x)
+    for (var i = 0; i < 3; i++) {
+      x.childNodes[i].style.visibility = "hidden";
+      console.log(x.childNodes[i]);
+    }
   } else {
     // User Logged In
     console.log("Guest User");
-  }
-
-  //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
-  //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
-
-  //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
-  //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
-
-  // Settings for Chat
-  //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-  // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
-  // Returns a valid button ID.
-  //};
-  //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
-  //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
-
-  embedded_svc.init(
-    "https://fulmineinmano--devshared.my.salesforce.com",
-    "https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow",
-    gslbBaseURL,
-    "00D1X0000000Npj",
-    "Website_Prospect_FIM",
-    {
-      baseLiveAgentContentURL:
-        "https://c.la1-c1cs-fra.salesforceliveagent.com/content",
-      deploymentId: "5721X0000004ECE",
-      buttonId: "5731X0000004DHg",
-      baseLiveAgentURL: "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
-      eswLiveAgentDevName: "Website_Prospect_FIM",
-      isOfflineSupportEnabled: true,
-    }
-  );
-
-  var x = document.getElementsByClassName("fieldList");
-  console.log(x)
-  for (var i = 0; i < 3; i++) {
-    x.childNodes[i].style.visibility = "hidden";
-    console.log(x.childNodes[i]);
+    embedded_svc.init(
+      'https://fulmineinmano--devshared.my.salesforce.com',
+      'https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow',
+      gslbBaseURL,
+      '00D1X0000000Npj',
+      'Website_FIM_LoggedIn_User',
+      {
+        baseLiveAgentContentURL: 'https://c.la1-c1cs-fra.salesforceliveagent.com/content',
+        deploymentId: '5721X0000004ECE',
+        buttonId: '5731X0000004DHg',
+        baseLiveAgentURL: 'https://d.la1-c1cs-fra.salesforceliveagent.com/chat',
+        eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I1X0000008PPgUAM_17d757bf263',
+        isOfflineSupportEnabled: false
+      }
+    );
   }
 
 }
