@@ -73,10 +73,10 @@ function initESW(gslbBaseURL) {
 
     embedded_svc.settings.extraPrechatFormDetails = [
       {
-        "label": "issue",
-        "value": "Overriding your setup",
-        "displayToAgent": true
-      }
+        label: "issue",
+        value: "Overriding your setup",
+        displayToAgent: true,
+      },
     ];
 
     // Prepopulate fields
@@ -147,8 +147,9 @@ function initESW(gslbBaseURL) {
   //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
 
   var x = document.getElementsByClassName("fieldList");
+  console.log(x)
   for (var i = 0; i < 3; i++) {
     x.childNodes[i].style.visibility = "hidden";
+    console.log(x.childNodes[i]);
   }
-
 }
