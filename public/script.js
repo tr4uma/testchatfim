@@ -136,4 +136,10 @@ function initESW(gslbBaseURL) {
       isOfflineSupportEnabled: true,
     }
   );
+
+  var x = document.getElementsByClassName("fieldList");
+  for (var i = 0; i < 3; i++) {
+    x.childNodes[i].style.visibility = "hidden";
+  }
+
 }
