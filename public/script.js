@@ -46,7 +46,7 @@ function setIdPressed(checkbox) {
 
 function initESW(gslbBaseURL) {
   embedded_svc.settings.displayHelpButton = true;
-  embedded_svc.settings.language = "it-IT"; //For example, enter 'en' or 'en-US'
+  embedded_svc.settings.language = "it"; //For example, enter 'en' or 'en-US'
   embedded_svc.settings.enabledFeatures = ["LiveAgent"];
   embedded_svc.settings.entryFeature = "LiveAgent";
 
