@@ -70,6 +70,15 @@ function initESW(gslbBaseURL) {
   if (userData !== null && typeof userData !== "undefined") {
     // User Logged In
     console.log("User Logged In");
+
+    embedded_svc.settings.extraPrechatFormDetails = [
+      {
+        "label": "issue",
+        "value": "Overriding your setup",
+        "displayToAgent": true
+      }
+    ];
+
     // Prepopulate fields
     embedded_svc.settings.prepopulatedPrechatFields = {
       FirstName: userData.firstName,
