@@ -54,11 +54,17 @@ function initESW(gslbBaseURL) {
     // User Logged In
     console.log("User Logged In");
     // Prepopulate fields
-    embedded_svc.settings.prepopulatedPrechatFields = {
-      FirstName: userData.firstName,
-      LastName: userData.lastName,
-      Email: userData.email,
-    };
+    embedded_svc.settings.extraPrechatFormDetails = [{
+      "label": "First Name",
+      "name": "FirstName",
+      "value": userData.firstName,
+      "displayToAgent":true
+    }];
+    // embedded_svc.settings.prepopulatedPrechatFields = {
+    //   FirstName: userData.firstName,
+    //   LastName: userData.lastName,
+    //   Email: userData.email,
+    // };
     // Disable creation of a contact and a case
     // embedded_svc.snippetSettingsFile.extraPrechatInfo = [
     //   {
