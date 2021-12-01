@@ -74,6 +74,47 @@ function initESW(gslbBaseURL) {
         displayToAgent: true,
       },
     ];
+    // Disable creation of a contact and a case
+    embedded_svc.snippetSettingsFile.extraPrechatInfo = [
+      {
+        entityName: "Contact",
+        entityFieldMaps: [
+          {
+            doCreate: false,
+            doFind: true,
+            fieldName: "LastName",
+            isExactMatch: true,
+            label: "Last Name",
+          },
+          {
+            doCreate: false,
+            doFind: true,
+            fieldName: "FirstName",
+            isExactMatch: true,
+            label: "First Name",
+          },
+          {
+            doCreate: false,
+            doFind: true,
+            fieldName: "Email",
+            isExactMatch: true,
+            label: "Email",
+          },
+        ],
+      },
+      // {
+      //   entityName: "Case",
+      //   entityFieldMaps: [
+      //     {
+      //       doCreate: false,
+      //       doFind: true,
+      //       fieldName: "Subject",
+      //       isExactMatch: false,
+      //       label: "Subject",
+      //     },
+      //   ],
+      // },
+    ];
     // Website_FIM_LoggedIn_User
     embedded_svc.init(
       "https://fulmineinmano--devshared.my.salesforce.com",
