@@ -74,10 +74,11 @@ function initESW(gslbBaseURL) {
         displayToAgent: true,
       },
     ];
-    // Link contact
+    // Link Contact and Account
     embedded_svc.settings.extraPrechatInfo = [
       {
         entityName: "Contact",
+        saveToTranscript: "ContactId",
         entityFieldMaps: [
           {
             fieldName: "Email",
@@ -87,7 +88,19 @@ function initESW(gslbBaseURL) {
             isExactMatch: true,
           },
         ],
-        saveToTranscript: "ContactId",
+      },
+      {
+        entityName: "Account",
+        saveToTranscript: "AccountId",
+        entityFieldMaps: [
+          {
+            fieldName: "PersonEmail",
+            label: "Email",
+            doCreate: false,
+            doFind: true,
+            isExactMatch: true,
+          },
+        ],
       },
     ];
     // Website_FIM_LoggedIn_User
