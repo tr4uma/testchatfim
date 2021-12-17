@@ -1,6 +1,26 @@
 var sessionId = false;
 var userData = null;
 
+var options = {
+  "org.id": "00D1X0000000Npj",
+  "chat.src":
+    "https://fulmineinmano--devshared.my.salesforce.com/embeddedservice/5.0/esw.min.js",
+  "chat.base.url": "https://fulmineinmano--devshared.my.salesforce.com",
+  "chat.agent.url":
+    "https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow",
+  "chat.logged.username": "Website_FIM_LoggedIn_User",
+  "chat.logged.agentname":
+    "EmbeddedServiceLiveAgent_Parent04I1X0000008PPgUAM_17d757bf263",
+  "chat.guest.username": "Website_Prospect_FIM",
+  "chat.guest.agentname": "Website_Prospect_FIM",
+  "chat.base.liveagent.content.url":
+    "https://c.la1-c1cs-fra.salesforceliveagent.com/content",
+  "chat.deployment.id": "5721X0000004ECE",
+  "chat.button.id": "5731X0000004DHg",
+  "chat.base.liveagent.url":
+    "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
+};
+
 function init() {
   var url_string = window.location.href;
   var url = new URL(url_string);
@@ -19,10 +39,7 @@ function init() {
 
   if (!window.embedded_svc) {
     var s = document.createElement("script");
-    s.setAttribute(
-      "src",
-      "https://fulmineinmano--devshared.my.salesforce.com/embeddedservice/5.0/esw.min.js"
-    );
+    s.setAttribute("src", options["chat.src"]);
     s.onload = function () {
       initESW(null);
     };
@@ -105,19 +122,17 @@ function initESW(gslbBaseURL) {
     ];
     // Website_FIM_LoggedIn_User
     embedded_svc.init(
-      "https://fulmineinmano--devshared.my.salesforce.com",
-      "https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow",
+      options["chat.base.url"],
+      options["chat.agent.url"],
       gslbBaseURL,
-      "00D1X0000000Npj",
-      "Website_FIM_LoggedIn_User",
+      options["org.id"],
+      options["chat.logged.username"],
       {
-        baseLiveAgentContentURL:
-          "https://c.la1-c1cs-fra.salesforceliveagent.com/content",
-        deploymentId: "5721X0000004ECE",
-        buttonId: "5731X0000004DHg",
-        baseLiveAgentURL: "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
-        eswLiveAgentDevName:
-          "EmbeddedServiceLiveAgent_Parent04I1X0000008PPgUAM_17d757bf263",
+        baseLiveAgentContentURL: options["chat.base.liveagent.content.url"],
+        deploymentId: options["chat.deployment.id"],
+        buttonId: options["chat.button.id"],
+        baseLiveAgentURL: options["chat.base.liveagent.url"],
+        eswLiveAgentDevName: options["chat.logged.agentname"],
         isOfflineSupportEnabled: true,
       }
     );
@@ -126,18 +141,17 @@ function initESW(gslbBaseURL) {
     console.log("Guest User");
     // Website_Prospect_FIM
     embedded_svc.init(
-      "https://fulmineinmano--devshared.my.salesforce.com",
-      "https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow",
+      options["chat.base.url"],
+      options["chat.agent.url"],
       gslbBaseURL,
-      "00D1X0000000Npj",
-      "Website_Prospect_FIM",
+      options["org.id"],
+      options["chat.guest.username"],
       {
-        baseLiveAgentContentURL:
-          "https://c.la1-c1cs-fra.salesforceliveagent.com/content",
-        deploymentId: "5721X0000004ECE",
-        buttonId: "5731X0000004DHg",
-        baseLiveAgentURL: "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
-        eswLiveAgentDevName: "Website_Prospect_FIM",
+        baseLiveAgentContentURL: options["chat.base.liveagent.content.url"],
+        deploymentId: options["chat.deployment.id"],
+        buttonId: options["chat.button.id"],
+        baseLiveAgentURL: options["chat.base.liveagent.url"],
+        eswLiveAgentDevName: options["chat.guest.agentname"],
         isOfflineSupportEnabled: true,
       }
     );
