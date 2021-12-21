@@ -1,7 +1,46 @@
 var sessionId = false;
+var orgId = -1;
 var userData = null;
 
-var options = {
+let options_dev = {
+  "org.id": "00D7Y000000BErs",
+  "chat.src":
+    "https://fulmineinmano--devshared.my.salesforce.com/embeddedservice/5.0/esw.min.js",
+  "chat.base.url": "https://fulmineinmano--devshared.my.salesforce.com",
+  "chat.agent.url":
+    "https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow",
+  "chat.logged.username": "Website_FIM_LoggedIn_User",
+  "chat.logged.agentname":
+    "EmbeddedServiceLiveAgent_Parent04I1X0000008PPgUAM_17d757bf263",
+  "chat.guest.username": "Website_Prospect_FIM",
+  "chat.guest.agentname": "Website_Prospect_FIM",
+  "chat.base.liveagent.content.url":
+    "https://c.la1-c1cs-fra.salesforceliveagent.com/content",
+  "chat.deployment.id": "5727Y000000GmeL",
+  "chat.button.id": "5737Y000000Kyqz",
+  "chat.base.liveagent.url":
+    "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
+};
+let options_devshared = {
+  "org.id": "00D1X0000000Npj",
+  "chat.src":
+    "https://fulmineinmano--devshared.my.salesforce.com/embeddedservice/5.0/esw.min.js",
+  "chat.base.url": "https://fulmineinmano--devshared.my.salesforce.com",
+  "chat.agent.url":
+    "https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow",
+  "chat.logged.username": "Website_FIM_LoggedIn_User",
+  "chat.logged.agentname":
+    "EmbeddedServiceLiveAgent_Parent04I1X0000008PPgUAM_17d757bf263",
+  "chat.guest.username": "Website_Prospect_FIM",
+  "chat.guest.agentname": "Website_Prospect_FIM",
+  "chat.base.liveagent.content.url":
+    "https://c.la1-c1cs-fra.salesforceliveagent.com/content",
+  "chat.deployment.id": "5721X0000004ECE",
+  "chat.button.id": "5731X0000004DHg",
+  "chat.base.liveagent.url":
+    "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
+};
+let options_uat = {
   "org.id": "00D7Y000000BENn",
   "chat.src":
     "https://fulmineinmano--devshared.my.salesforce.com/embeddedservice/5.0/esw.min.js",
@@ -18,8 +57,10 @@ var options = {
   "chat.deployment.id": "5727Y000000Kyl7",
   "chat.button.id": "5737Y000000Kyr4",
   "chat.base.liveagent.url":
-    "https://d.la1-c1cs-fra.salesforceliveagent.com/chat"
+    "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
 };
+
+var options = {};
 
 function init() {
   var url_string = window.location.href;
@@ -37,6 +78,21 @@ function init() {
   }
   document.getElementById("sessionId").checked = sessionId == "true";
 
+  var orgId = Number(url.searchParams.get("orgId"));
+  if (orgId == 0 || orgId == -1) {
+    orgId = 1;
+  }
+  console.log(orgId);
+  document.getElementById("orgId").value = orgId;
+  switch (orgId) {
+    case 1:
+      options = options_dev;
+    case 2:
+      options = options_devshared;
+    case 3:
+      options = options_uat;
+  }
+
   if (!window.embedded_svc) {
     var s = document.createElement("script");
     s.setAttribute("src", options["chat.src"]);
@@ -49,15 +105,31 @@ function init() {
   }
 }
 
-function setIdPressed(checkbox) {
-  sessionId = checkbox.checked;
-  var url = window.location.href.split("?")[0];
-  if (url.indexOf("?") > -1) {
-    url += "&";
+function getUrl(name, value) {
+  _url = location.href.toString();
+  var re = new RegExp("([?&])" + name + "=.*?(&|#|$)", "i");
+  if (_url.match(re)) {
+    return _url.replace(re, "$1" + name + "=" + value + "$2");
   } else {
-    url += "?";
+    var hash = "";
+    if (_url.indexOf("#") !== -1) {
+      hash = _url.replace(/.*#/, "#");
+      _url = _url.replace(/#.*/, "");
+    }
+    var separator = _url.indexOf("?") !== -1 ? "&" : "?";
+    return _url + separator + name + "=" + value + hash;
   }
-  url += "sessionId=" + sessionId;
+}
+
+function setSessionIdPressed(checkbox) {
+  sessionId = checkbox.checked;
+  var url = getUrl("sessionId", sessionId);
+  window.location.href = url;
+}
+
+function setOrgIdPressed(combobox) {
+  orgId = combobox.value;
+  var url = getUrl("orgId", orgId);
   window.location.href = url;
 }
 
