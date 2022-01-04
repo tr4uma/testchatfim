@@ -5,10 +5,10 @@ var userData = null;
 let options_dev = {
   "org.id": "00D7Y000000BErs",
   "chat.src":
-    "https://fulmineinmano--devshared.my.salesforce.com/embeddedservice/5.0/esw.min.js",
-  "chat.base.url": "https://fulmineinmano--devshared.my.salesforce.com",
+    "https://fulmineinmano--dev.my.salesforce.com/embeddedservice/5.0/esw.min.js",
+  "chat.base.url": "https://fulmineinmano--dev.my.salesforce.com",
   "chat.agent.url":
-    "https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow",
+    "https://dev-fulmineinmano--dev.cs173.force.com/liveAgentSetupFlow",
   "chat.logged.username": "Website_FIM_LoggedIn_User",
   "chat.logged.agentname":
     "EmbeddedServiceLiveAgent_Parent04I1X0000008PPgUAM_17d757bf263",
@@ -43,10 +43,10 @@ let options_devshared = {
 let options_uat = {
   "org.id": "00D7Y000000BENn",
   "chat.src":
-    "https://fulmineinmano--devshared.my.salesforce.com/embeddedservice/5.0/esw.min.js",
-  "chat.base.url": "https://fulmineinmano--devshared.my.salesforce.com",
+    "https://fulmineinmano--uat.my.salesforce.com/embeddedservice/5.0/esw.min.js",
+  "chat.base.url": "https://fulmineinmano--uat.my.salesforce.com",
   "chat.agent.url":
-    "https://devshared-sf-liveagent.cs101.force.com/liveAgentSetupFlow",
+    "https://uat-sf-liveagent.cs173.force.com/liveAgentSetupFlow",
   "chat.logged.username": "Website_FIM_LoggedIn_User",
   "chat.logged.agentname":
     "EmbeddedServiceLiveAgent_Parent04I1X0000008PPgUAM_17d757bf263",
