@@ -163,7 +163,7 @@ function initESW(gslbBaseURL) {
         displayToAgent: true,
       },
     ];
-    // Link Contact and Account
+    // Link Contact, Account, Case
     embedded_svc.settings.extraPrechatInfo = [
       {
         entityName: "Contact",
@@ -188,6 +188,34 @@ function initESW(gslbBaseURL) {
             doCreate: false,
             doFind: true,
             isExactMatch: true,
+          },
+        ],
+      },
+      {
+        entityName: "Case",
+        showOnCreate: true,
+        saveToTranscript: "CaseId",
+        entityFieldMaps: [
+          {
+            isExactMatch: false,
+            fieldName: "Subject",
+            doCreate: true,
+            doFind: false,
+            label: "issue",
+          },
+          {
+            isExactMatch: false,
+            fieldName: "Status",
+            doCreate: true,
+            doFind: false,
+            label: "Status",
+          },
+          {
+            isExactMatch: false,
+            fieldName: "Origin",
+            doCreate: true,
+            doFind: false,
+            label: "Origin",
           },
         ],
       },
