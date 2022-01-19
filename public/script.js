@@ -59,6 +59,22 @@ let options_uat = {
   "chat.base.liveagent.url":
     "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
 };
+let options_prod = {
+  "org.id": "",
+  "chat.src": "",
+  "chat.base.url": "",
+  "chat.agent.url": "",
+  "chat.logged.username": "",
+  "chat.logged.agentname": "",
+  "chat.guest.username": "",
+  "chat.guest.agentname": "",
+  "chat.base.liveagent.content.url":
+    "https://c.la1-c1cs-fra.salesforceliveagent.com/content",
+  "chat.deployment.id": "",
+  "chat.button.id": "",
+  "chat.base.liveagent.url":
+    "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
+};
 
 var options = {};
 
@@ -94,6 +110,10 @@ function init() {
     case 3:
       console.log("UAT");
       options = options_uat;
+      break;
+    case 4:
+      console.log("PROD");
+      options = options_prod;
       break;
   }
   if (!window.embedded_svc) {
@@ -242,6 +262,36 @@ function initESW(gslbBaseURL) {
   } else {
     // Guest user
     console.log("Guest User");
+    // embedded_svc.settings.extraPrechatInfo = [
+    //   {
+    //     entityName: "Case",
+    //     showOnCreate: true,
+    //     saveToTranscript: "CaseId",
+    //     entityFieldMaps: [
+    //       {
+    //         isExactMatch: false,
+    //         fieldName: "Subject",
+    //         doCreate: true,
+    //         doFind: false,
+    //         label: "issue",
+    //       },
+    //       {
+    //         isExactMatch: false,
+    //         fieldName: "Status",
+    //         doCreate: true,
+    //         doFind: false,
+    //         label: "Status",
+    //       },
+    //       {
+    //         isExactMatch: false,
+    //         fieldName: "Origin",
+    //         doCreate: true,
+    //         doFind: false,
+    //         label: "Origin",
+    //       },
+    //     ],
+    //   },
+    // ];
     // Website_Prospect_FIM
     embedded_svc.init(
       options["chat.base.url"],
