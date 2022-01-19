@@ -15,12 +15,14 @@
         }
     </style>
     USER CHAT<br>
+    <div class="slds-align_absolute-center" style="height:5rem">This content will be positioned in the absolute center of its container</div>
     <input type="checkbox" id="sessionId" name="sessionId" value="" onclick="setSessionIdPressed(this)">
     <label for="sessionId"> User logged in</label><br>
     <select id="orgId" name="orgId" onchange="setOrgIdPressed(this)">
         <option value="1">dev</option>
         <option value="2">devshared</option>
         <option value="3">uat</option>
+        <option value="4">prod</option>
     </select><br>
     <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
     <script type='text/javascript' src="script.js"></script>
