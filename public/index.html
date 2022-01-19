@@ -1,21 +1,12 @@
 <!DOCTYPE html>
 <html>
-
-<head></head>
-
+<head>
+    <link rel="stylesheet" type='text/css' href="style.css">
+</head>
 <body onload="init()">
-    <style type='text/css'>
-        .embeddedServiceHelpButton .helpButton .uiButton {
-            background-color: #ff0000;
-            font-family: "Arial", sans-serif;
-        }
-
-        .embeddedServiceHelpButton .helpButton .uiButton:focus {
-            outline: 1px solid #cc0000;
-        }
-    </style>
-    USER CHAT<br>
-    <div class="slds-align_absolute-center" style="height:5rem">This content will be positioned in the absolute center of its container</div>
+    <div class="slds-box">
+        <p>USER CHAT</p>
+    </div>
     <input type="checkbox" id="sessionId" name="sessionId" value="" onclick="setSessionIdPressed(this)">
     <label for="sessionId"> User logged in</label><br>
     <select id="orgId" name="orgId" onchange="setOrgIdPressed(this)">
@@ -27,5 +18,4 @@
     <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
     <script type='text/javascript' src="script.js"></script>
 </body>
-
 </html>

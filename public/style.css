@@ -1,0 +1,7 @@
+.embeddedServiceHelpButton .helpButton .uiButton {
+  background-color: #ff0000;
+  font-family: "Arial", sans-serif;
+}
+.embeddedServiceHelpButton .helpButton .uiButton:focus {
+  outline: 1px solid #cc0000;
+}
