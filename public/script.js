@@ -77,22 +77,25 @@ function init() {
     userData = null;
   }
   document.getElementById("sessionId").checked = sessionId == "true";
-
   var orgId = Number(url.searchParams.get("orgId"));
   if (orgId == 0 || orgId == -1) {
     orgId = 1;
   }
-  console.log(orgId);
   document.getElementById("orgId").value = orgId;
   switch (orgId) {
     case 1:
+      console.log("DEV");
       options = options_dev;
+      break;
     case 2:
+      console.log("DEVSHARED");
       options = options_devshared;
+      break;
     case 3:
+      console.log("UAT");
       options = options_uat;
+      break;
   }
-
   if (!window.embedded_svc) {
     var s = document.createElement("script");
     s.setAttribute("src", options["chat.src"]);
