@@ -11,17 +11,23 @@
 </head>
 
 <body onload="init()">
+    <div class="slds-align_absolute-center">
     <div class="slds-box">
         <p>USER CHAT</p>
     </div>
-    <input type="checkbox" id="sessionId" name="sessionId" value="" onclick="setSessionIdPressed(this)">
-    <label for="sessionId"> User logged in</label><br>
-    <select id="orgId" name="orgId" onchange="setOrgIdPressed(this)">
-        <option value="1">dev</option>
-        <option value="2">devshared</option>
-        <option value="3">uat</option>
-        <option value="4">prod</option>
-    </select><br>
+    <div class="slds-box">
+        <select id="orgId" name="orgId" onchange="setOrgIdPressed(this)">
+            <option value="1">dev</option>
+            <option value="2">devshared</option>
+            <option value="3">uat</option>
+            <option value="4">prod</option>
+        </select>
+    </div>
+    <div class="slds-box">
+        <input type="checkbox" id="sessionId" name="sessionId" value="" onclick="setSessionIdPressed(this)">
+        <label for="sessionId"> User logged in</label>
+    </div>
+</div>
     <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
     <script type='text/javascript' src="script.js"></script>
 </body>
