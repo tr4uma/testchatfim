@@ -168,21 +168,36 @@ function initESW(gslbBaseURL) {
     // Prepopulate details
     embedded_svc.settings.extraPrechatFormDetails = [
       {
-        name: "FirstName",
+        name: "FirstName", // Form link
         label: "First Name",
         value: userData.firstName,
         displayToAgent: true,
       },
       {
-        name: "LastName",
+        name: "LastName", // Form link
         label: "Last Name",
         value: userData.lastName,
         displayToAgent: true,
       },
       {
-        name: "Email",
+        name: "Email", // Form link
         label: "Email",
         value: userData.email,
+        displayToAgent: true,
+      },
+      {
+        label: "Subj",
+        value: "New chat Received",
+        displayToAgent: true,
+      },
+      {
+        label: "Sts",
+        value: "New",
+        displayToAgent: true,
+      },
+      {
+        label: "Ogn",
+        value: "Web",
         displayToAgent: true,
       },
     ];
@@ -220,25 +235,32 @@ function initESW(gslbBaseURL) {
         saveToTranscript: "CaseId",
         entityFieldMaps: [
           {
-            isExactMatch: false,
+            fieldName: "AccountId",
+            label: "Email",
+            doCreate: false,
+            doFind: true,
+            isExactMatch: true,
+          },
+          {
             fieldName: "Subject",
+            label: "Subj",
             doCreate: true,
             doFind: false,
-            label: "issue",
+            isExactMatch: false,
           },
           {
-            isExactMatch: false,
             fieldName: "Status",
+            label: "Sts",
             doCreate: true,
             doFind: false,
-            label: "Status",
+            isExactMatch: false,
           },
           {
-            isExactMatch: false,
             fieldName: "Origin",
+            label: "Ogn",
             doCreate: true,
             doFind: false,
-            label: "Origin",
+            isExactMatch: false,
           },
         ],
       },
@@ -262,36 +284,53 @@ function initESW(gslbBaseURL) {
   } else {
     // Guest user
     console.log("Guest User");
-    // embedded_svc.settings.extraPrechatInfo = [
-    //   {
-    //     entityName: "Case",
-    //     showOnCreate: true,
-    //     saveToTranscript: "CaseId",
-    //     entityFieldMaps: [
-    //       {
-    //         isExactMatch: false,
-    //         fieldName: "Subject",
-    //         doCreate: true,
-    //         doFind: false,
-    //         label: "issue",
-    //       },
-    //       {
-    //         isExactMatch: false,
-    //         fieldName: "Status",
-    //         doCreate: true,
-    //         doFind: false,
-    //         label: "Status",
-    //       },
-    //       {
-    //         isExactMatch: false,
-    //         fieldName: "Origin",
-    //         doCreate: true,
-    //         doFind: false,
-    //         label: "Origin",
-    //       },
-    //     ],
-    //   },
-    // ];
+    embedded_svc.settings.extraPrechatFormDetails = [
+      {
+        label: "Subj",
+        value: "Chat with Customer",
+        displayToAgent: true,
+      },
+      {
+        label: "Sts",
+        value: "New",
+        displayToAgent: true,
+      },
+      {
+        label: "Ogn",
+        value: "Web",
+        displayToAgent: true,
+      },
+    ];
+    embedded_svc.settings.extraPrechatInfo = [
+      {
+        entityName: "Case",
+        showOnCreate: true,
+        saveToTranscript: "CaseId",
+        entityFieldMaps: [
+          {
+            fieldName: "Subject",
+            label: "Subj",
+            doCreate: true,
+            doFind: false,
+            isExactMatch: false,
+          },
+          {
+            fieldName: "Status",
+            label: "Sts",
+            doCreate: true,
+            doFind: false,
+            isExactMatch: false,
+          },
+          {
+            fieldName: "Origin",
+            label: "Ogn",
+            doCreate: true,
+            doFind: false,
+            isExactMatch: false,
+          },
+        ],
+      },
+    ];
     // Website_Prospect_FIM
     embedded_svc.init(
       options["chat.base.url"],
