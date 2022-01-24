@@ -187,7 +187,7 @@ function initESW(gslbBaseURL) {
       },
       {
         label: "Subj",
-        value: "New chat Received",
+        value: "Chat con Cliente",
         displayToAgent: true,
       },
       {
@@ -206,6 +206,8 @@ function initESW(gslbBaseURL) {
       {
         entityName: "Contact",
         saveToTranscript: "ContactId",
+        linkToEntityName: "Case",
+        linkToEntityField: "ContactId",
         entityFieldMaps: [
           {
             fieldName: "Email",
@@ -219,6 +221,8 @@ function initESW(gslbBaseURL) {
       {
         entityName: "Account",
         saveToTranscript: "AccountId",
+        linkToEntityName: "Case",
+        linkToEntityField: "AccountId",
         entityFieldMaps: [
           {
             fieldName: "PersonEmail",
@@ -233,14 +237,8 @@ function initESW(gslbBaseURL) {
         entityName: "Case",
         showOnCreate: true,
         saveToTranscript: "CaseId",
+        linkToEntityName: "Account",
         entityFieldMaps: [
-          {
-            fieldName: "AccountId",
-            label: "Email",
-            doCreate: false,
-            doFind: true,
-            isExactMatch: true,
-          },
           {
             fieldName: "Subject",
             label: "Subj",
@@ -285,11 +283,11 @@ function initESW(gslbBaseURL) {
     // Guest user
     console.log("Guest User");
     embedded_svc.settings.extraPrechatFormDetails = [
-      {
-        label: "Subj",
-        value: "Chat with Customer",
-        displayToAgent: true,
-      },
+      // {
+      //   label: "Subj",
+      //   value: "Chat con Ospite",
+      //   displayToAgent: true,
+      // },
       {
         label: "Sts",
         value: "New",
@@ -303,13 +301,26 @@ function initESW(gslbBaseURL) {
     ];
     embedded_svc.settings.extraPrechatInfo = [
       {
+        entityName: "Account",
+        saveToTranscript: "AccountId",
+        entityFieldMaps: [
+          {
+            fieldName: "PersonEmail",
+            label: "Email",
+            doCreate: false,
+            doFind: true,
+            isExactMatch: true,
+          },
+        ],
+      },
+      {
         entityName: "Case",
         showOnCreate: true,
         saveToTranscript: "CaseId",
         entityFieldMaps: [
           {
             fieldName: "Subject",
-            label: "Subj",
+            label: "Subject",
             doCreate: true,
             doFind: false,
             isExactMatch: false,
