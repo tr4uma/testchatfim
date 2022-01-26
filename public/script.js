@@ -162,10 +162,93 @@ function initESW(gslbBaseURL) {
   embedded_svc.settings.enabledFeatures = ["LiveAgent"];
   embedded_svc.settings.entryFeature = "LiveAgent";
 
-  if (userData !== null && typeof userData !== "undefined") {
+  if (userData == null && typeof userData == "undefined") {
+    // Guest User
+    console.log("Guest User");
+    embedded_svc.settings.extraPrechatFormDetails = [
+      {
+        label: "Subj",
+        value: "Chat con Ospite",
+        displayToAgent: true,
+      },
+      {
+        label: "Sts",
+        value: "New",
+        displayToAgent: true,
+      },
+      {
+        label: "Ogn",
+        value: "Chat",
+        displayToAgent: true,
+      },
+    ];
+    embedded_svc.settings.extraPrechatInfo = [
+      {
+        entityName: "Account",
+        saveToTranscript: "AccountId",
+        entityFieldMaps: [
+          {
+            fieldName: "PersonEmail",
+            label: "Email",
+            doCreate: false,
+            doFind: true,
+            isExactMatch: true,
+          },
+        ],
+      },
+      {
+        entityName: "Case",
+        showOnCreate: true,
+        saveToTranscript: "CaseId",
+        entityFieldMaps: [
+          {
+            fieldName: "Subject",
+            label: "Sbj",
+            doCreate: true,
+            doFind: false,
+            isExactMatch: false,
+          },
+          {
+            fieldName: "Status",
+            label: "Sts",
+            doCreate: true,
+            doFind: false,
+            isExactMatch: false,
+          },
+          {
+            fieldName: "Origin",
+            label: "Ogn",
+            doCreate: true,
+            doFind: false,
+            isExactMatch: false,
+          },
+        ],
+      },
+    ];
+    // Website_Guest
+    embedded_svc.init(
+      options["chat.base.url"],
+      options["chat.agent.url"],
+      gslbBaseURL,
+      options["org.id"],
+      options["chat.guest.username"],
+      {
+        baseLiveAgentContentURL: options["chat.base.liveagent.content.url"],
+        deploymentId: options["chat.deployment.id"],
+        buttonId: options["chat.button.id"],
+        baseLiveAgentURL: options["chat.base.liveagent.url"],
+        eswLiveAgentDevName: options["chat.guest.agentname"],
+        isOfflineSupportEnabled: true,
+      }
+    );
+  } else {
     // User Logged In
     console.log("User Logged In");
     // Prepopulate details
+    embedded_svc.settings.prepopulatedPrechatFields = {
+      FirstName: userData.firstName,
+      LastName: userData.lastName,
+    };
     embedded_svc.settings.extraPrechatFormDetails = [
       {
         name: "FirstName", // Form link
@@ -197,7 +280,7 @@ function initESW(gslbBaseURL) {
       },
       {
         label: "Ogn",
-        value: "Web",
+        value: "Chat",
         displayToAgent: true,
       },
     ];
@@ -263,7 +346,7 @@ function initESW(gslbBaseURL) {
         ],
       },
     ];
-    // Website_FIM_LoggedIn_User
+    // Website_LoggedIn
     embedded_svc.init(
       options["chat.base.url"],
       options["chat.agent.url"],
@@ -276,85 +359,6 @@ function initESW(gslbBaseURL) {
         buttonId: options["chat.button.id"],
         baseLiveAgentURL: options["chat.base.liveagent.url"],
         eswLiveAgentDevName: options["chat.logged.agentname"],
-        isOfflineSupportEnabled: true,
-      }
-    );
-  } else {
-    // Guest user
-    console.log("Guest User");
-    embedded_svc.settings.extraPrechatFormDetails = [
-      // {
-      //   label: "Subj",
-      //   value: "Chat con Ospite",
-      //   displayToAgent: true,
-      // },
-      {
-        label: "Sts",
-        value: "New",
-        displayToAgent: true,
-      },
-      {
-        label: "Ogn",
-        value: "Web",
-        displayToAgent: true,
-      },
-    ];
-    embedded_svc.settings.extraPrechatInfo = [
-      {
-        entityName: "Account",
-        saveToTranscript: "AccountId",
-        entityFieldMaps: [
-          {
-            fieldName: "PersonEmail",
-            label: "Email",
-            doCreate: false,
-            doFind: true,
-            isExactMatch: true,
-          },
-        ],
-      },
-      {
-        entityName: "Case",
-        showOnCreate: true,
-        saveToTranscript: "CaseId",
-        entityFieldMaps: [
-          {
-            fieldName: "Subject",
-            label: "Subject",
-            doCreate: true,
-            doFind: false,
-            isExactMatch: false,
-          },
-          {
-            fieldName: "Status",
-            label: "Sts",
-            doCreate: true,
-            doFind: false,
-            isExactMatch: false,
-          },
-          {
-            fieldName: "Origin",
-            label: "Ogn",
-            doCreate: true,
-            doFind: false,
-            isExactMatch: false,
-          },
-        ],
-      },
-    ];
-    // Website_Prospect_FIM
-    embedded_svc.init(
-      options["chat.base.url"],
-      options["chat.agent.url"],
-      gslbBaseURL,
-      options["org.id"],
-      options["chat.guest.username"],
-      {
-        baseLiveAgentContentURL: options["chat.base.liveagent.content.url"],
-        deploymentId: options["chat.deployment.id"],
-        buttonId: options["chat.button.id"],
-        baseLiveAgentURL: options["chat.base.liveagent.url"],
-        eswLiveAgentDevName: options["chat.guest.agentname"],
         isOfflineSupportEnabled: true,
       }
     );
