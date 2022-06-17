@@ -79,10 +79,12 @@ let options_prod = {
 var options = {};
 
 function init() {
+  console.log("VERSION: 1");
   var url_string = window.location.href;
   var url = new URL(url_string);
   var sessionId = url.searchParams.get("sessionId");
-  if (sessionId == "true") {
+  console.log(sessionId);
+  if (sessionId === "true") {
     //let userData = $.fim.private.accountDetails;
     userData = {
       firstName: "John",
@@ -162,7 +164,7 @@ function initESW(gslbBaseURL) {
   embedded_svc.settings.enabledFeatures = ["LiveAgent"];
   embedded_svc.settings.entryFeature = "LiveAgent";
 
-  if (userData == null && typeof userData == "undefined") {
+  if (!userData) {
     // Guest User
     console.log("Guest User");
     embedded_svc.settings.extraPrechatFormDetails = [
